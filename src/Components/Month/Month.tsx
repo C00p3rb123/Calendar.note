@@ -1,10 +1,8 @@
-import React, {useState} from "react";
-import moment from 'moment';
-import Day from "../Day";
-import { format } from "path";
-import { isDebuggerStatement } from "typescript";
 import {useMonth} from '../../Hooks/useMonth'
-import {GrNext, GrPrevious} from "react-icons/gr"
+import { MonthTitle } from './MonthTitle'
+import {useState} from "react"
+import moment from 'moment'
+
 
 
 type Props = {
@@ -15,13 +13,11 @@ type Props = {
 const Month = ({month, format}: Props) => {
 
     const monthDisplayDates = useMonth(format, month)
+    const style5rows = 1;
 
     return(
-        <div className="flex justify-center"> 
-        <button>
-            <GrPrevious/>
-            </button>                  
-            <div className="grid grid-cols-7 w-fit pb-4 pr-5 pt-5">
+        <div className="flex flex-col items-center h-full w-4/5">                        
+            <div className="grid grid-cols-7 h-full w-full pb-4 pr-5">
             {monthDisplayDates.map(week => {
                 return(week.map(day =>{                    
                     return(day)
@@ -29,9 +25,6 @@ const Month = ({month, format}: Props) => {
             })}            
         
         </div>
-        <button>
-            <GrNext/>
-        </button>
         </div>
         
     )}

@@ -7,10 +7,16 @@ export const useMonth =(formatStart: number, month: number) => {
 
     let TotalCells = 35;
     const daysInWeek = 7;
-    const daysinMonth = (moment().month(month).date());
+    const daysinMonth = (moment().month(month).daysInMonth());
     const startofMonth: moment.Moment = moment().startOf('month').month(month);
-    const availableCells: number = TotalCells - startofMonth.weekday() - formatStart;
-    var monthDate: moment.Moment = (startofMonth.subtract(startofMonth.weekday() - formatStart, 'days'));
+    const startofMonthWeekday = () => {
+        if(startofMonth.weekday() === 0){
+            return daysInWeek;
+        }
+        return(startofMonth.weekday())
+    }
+    const availableCells: number = TotalCells - startofMonthWeekday(); //startofMonth weekday refers to the number of the weeekday eg monday = 1, tues = 2
+    var monthDate: moment.Moment = (startofMonth.subtract(startofMonthWeekday() - formatStart, 'days')); //calculates the first monday of the month
 
     const rows = (): number => {
         if (availableCells < daysinMonth) {
