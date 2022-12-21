@@ -12,7 +12,7 @@ const Home = () => {
 
     useEffect(() => {
         setMonthFormatted(moment().month(month).format('MMMM YYYY'));
-        console.log("hi there")
+        
 
     }, [month])
 

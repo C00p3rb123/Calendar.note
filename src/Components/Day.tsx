@@ -1,5 +1,6 @@
 import moment from "moment";
 import React, {useState, useEffect} from "react";
+import { TaskDisplay } from "./Task/Task";
 
 
 type Props =  {
@@ -11,16 +12,10 @@ type Props =  {
 const Day: React.FC<Props> = ({date, abbreviation}) =>{
 
     const [isClicked, setIsClicked] = useState(false)
-    const [task, setTask] = useState<string>()
-    const [tasks, setTasks] = useState<string[]>([])
+    const [task, setTask] = useState<JSX.Element>()
+    const [tasks, setTasks] = useState<JSX.Element[]>([]) 
 
-    const updatingTasks = (task: string) => {
-        setTask(task)
-        
 
-    }
-
-    
     useEffect(() => {
         console.log(task)
         console.log(isClicked)
@@ -43,7 +38,7 @@ const Day: React.FC<Props> = ({date, abbreviation}) =>{
             </div>
                 ))}
            </div>
-           {isClicked && <input autoFocus className="bg-maroon text-white self-start w-full" onChange={(text) => updatingTasks(text.target.value)}></input>}    
+           {isClicked && <input autoFocus className="bg-maroon text-white self-start w-full" onChange={(text) => setTask(<TaskDisplay message={text.target.value}/>)}></input>}    
 
             
         </div>

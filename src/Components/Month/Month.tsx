@@ -1,5 +1,4 @@
 import {useMonth} from '../../Hooks/useMonth'
-import { MonthTitle } from './MonthTitle'
 import {useState} from "react"
 import moment from 'moment'
 

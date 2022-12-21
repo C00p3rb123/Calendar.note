@@ -10,9 +10,9 @@ export const TaskDisplay = ({message}: Task) => {
     const [task, setTask] = useState<string>(message);
     const [isComplete, setIsComplete] = useState<boolean>(false)
     return (
-        <div className="bg-maroon text-white">
+        <div className="bg-maroon text-white flex space justify-between">
             {message}            
-            <div>
+            <div className='flex pt-1'>
              <CiEdit/> 
              <TiTick/>
              <RiDeleteBin6Line/>
