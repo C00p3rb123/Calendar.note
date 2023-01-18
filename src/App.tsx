@@ -29,6 +29,9 @@ function App() {
 //TODO: Importing of google calendar/exporting to google calendar or something with google api
 //TODO: Dashboard
 //TODO: messaging? 
+//TODO: ChatGPT3 to organise your day
+
+
 
 
 

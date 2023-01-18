@@ -1,9 +1,9 @@
 import React from 'react'
+import { Task } from '../Types/types'
 
-export const useEditing = () => {  
+export const editTask= () => {  
 
-    const editButton = () => {
-        
-    }
+   
     
 }
+
