@@ -6,28 +6,28 @@ import {Task} from '../../Types/types'
 
 
 
-export const TaskDisplay = ({id}: Task) => {
+export const TaskDisplay = ({identifier, message}: Task) => {
 
-    const [taskText, setTaskText] = useState<string>("");
     const [isComplete, setIsComplete] = useState<boolean>(false)
-    const [isEdit, setIsEdit] = useState<boolean>(true)
+    const [isEdit, setIsEdit] = useState<boolean>(false)
 
-   
+    useEffect(() => {
+        
+    })
     return (
-        taskText ?
-        <div className="bg-maroon text-white ">
-            {taskText}            
+        isEdit ? <input autoFocus className='bg-maroon'></input>:
+        <div className="bg-maroon flex justify-between text-white ">
+            {message}            
             <div className='flex pt-1'>
              <CiEdit onClick={() => {
-               setIsEdit(true)
-               
+               setIsEdit(!isEdit)
+               isEdit && <input className='bg-black text-white'></input>
+               console.log(isEdit + "hi")
              }}/> 
              <TiTick/>
              <RiDeleteBin6Line/>
             </div>
-        </div>: 
-
-        <input className="bg-maroon autofocus text-white self-start w-full" onChange={(text) => setTaskText(text.target.value)}></input>
+        </div>
     )
 
 }

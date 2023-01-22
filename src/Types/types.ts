@@ -1,3 +1,4 @@
 export type Task = {
-    id: React.MutableRefObject<number>
+    identifier: React.MutableRefObject<number>
+    message: string | undefined
 }
