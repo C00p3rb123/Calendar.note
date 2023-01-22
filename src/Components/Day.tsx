@@ -1,8 +1,8 @@
 import moment from "moment";
 import React, {useState, useEffect, useRef} from "react";
-import { useTasks } from "../Hooks/useTasks";
 import { TaskDisplay } from "./Task/Task";
 import {AiOutlinePlus} from 'react-icons/ai'
+import {Task} from "../Types/types"
 
 type Props =  {
    date: number,
@@ -14,7 +14,8 @@ type Props =  {
 
 const Day: React.FC<Props> = ({date, abbreviation}) =>{
 
-    const  {tasks, setTasks, id} = useTasks(); 
+    const id = useRef(0);
+    const [tasks, setTasks] = useState<Task[]>([])
     const [isClicked, setIscClicked] = useState(false)
     const [taskText, setTaskText] = useState<string>()
 
@@ -23,28 +24,25 @@ const Day: React.FC<Props> = ({date, abbreviation}) =>{
             setTasks([...tasks, {
                 identifier: id,
                 message: taskText
+                
             }])
             setTaskText(undefined)
-            id.current = id.current+1;
-            
+            id.current = id.current+1;            
         }
     },[isClicked])
     
     return(
         <div className="flex flex-col items-center bg-white text-maroon border border-gray-300/50 w-full" onClick={() => {
-          setIscClicked(false)          
+          setIscClicked(!isClicked)
+          {console.log(tasks)}          
         } } >
            <span>{abbreviation.toUpperCase()}</span>
-           <span className="">{date}</span> 
-           <span className="text-redbrown pb-2 pt-1 hover:bg-beige"><AiOutlinePlus onClick={() => {
-          setIscClicked(!isClicked)          
-          console.log(isClicked)
-        } } /></span>          
+           <span className="">{date}</span>                   
            <div className="flex flex-col self-start w-full space-y-1 pb-1">
         
             {tasks.map(task => (
             
-             <TaskDisplay identifier={task.identifier} message={task.message}/>              
+             <TaskDisplay task={task} setTask={setTasks} tasks={tasks}/>              
             
             ))}
            </div>   

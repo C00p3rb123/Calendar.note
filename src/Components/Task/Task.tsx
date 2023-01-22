@@ -4,30 +4,28 @@ import {RiDeleteBin6Line} from 'react-icons/ri'
 import {CiEdit} from 'react-icons/ci'
 import {Task} from '../../Types/types'
 
+type Props = {
+    task: Task,
+    setTask: React.Dispatch<React.SetStateAction<Task[]>>, 
+    tasks: Task[]
+}
 
 
-export const TaskDisplay = ({identifier, message}: Task) => {
+export const TaskDisplay = ({task, setTask, tasks}: Props) => {
 
     const [isComplete, setIsComplete] = useState<boolean>(false)
     const [isEdit, setIsEdit] = useState<boolean>(false)
-
-    useEffect(() => {
-        
-    })
-    return (
-        isEdit ? <input autoFocus className='bg-maroon'></input>:
-        <div className="bg-maroon flex justify-between text-white ">
-            {message}            
-            <div className='flex pt-1'>
-             <CiEdit onClick={() => {
-               setIsEdit(!isEdit)
-               isEdit && <input className='bg-black text-white'></input>
-               console.log(isEdit + "hi")
-             }}/> 
-             <TiTick/>
-             <RiDeleteBin6Line/>
-            </div>
+    const [taskText, setTaskText] = useState(task.message); 
+    
+  
+    return (<div className=''>
+        {task.message}
+        <div>
+            <CiEdit />
+            <TiTick />
+            <RiDeleteBin6Line/>
         </div>
-    )
+
+    </div>)
 
 }
