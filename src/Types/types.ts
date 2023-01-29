@@ -1,4 +1,4 @@
 export type Task = {
-    identifier: React.MutableRefObject<number>
+    identifier: number
     message: string  
 }

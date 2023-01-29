@@ -21,7 +21,15 @@ export const TaskDisplay = ({taskDetails, setTasks, tasks}: Props) => {
     return (
         isEdit ? <input autoFocus className="bg-maroon text-white w-full" onChange={(text) => {
             setTaskText(text.target.value)
-        }} onClick={(e) =>  }
+            console.log(taskDetails.identifier)
+        }} onClick={(e) => {
+            if(taskDetails.message !== taskText){
+                tasks[taskDetails.identifier].message = taskText;
+                setTasks(tasks)
+                setIsEdit(false)
+                e.stopPropagation();
+            }
+        } }
          ></input> :
     <div className='flex bg-maroon text-white justify-between items-end'>
         {taskDetails.message}

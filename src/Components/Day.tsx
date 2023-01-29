@@ -14,7 +14,7 @@ type Props =  {
 
 const Day: React.FC<Props> = ({date, abbreviation}) =>{
 
-    const id = useRef(0);
+    const [id, setId] = useState(0);
     const [tasks, setTasks] = useState<Task[]>([])
     const [isClicked, setIscClicked] = useState(false)
     const [taskText, setTaskText] = useState<string>()
@@ -27,7 +27,7 @@ const Day: React.FC<Props> = ({date, abbreviation}) =>{
                 
             }])
             setTaskText(undefined)
-            id.current = id.current+1;            
+            setId(id+1)            
         }
     },[isClicked])
     
