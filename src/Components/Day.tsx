@@ -42,7 +42,7 @@ const Day: React.FC<Props> = ({date, abbreviation}) =>{
         
             {tasks.map(task => (
             
-             <TaskDisplay task={task} setTask={setTasks} tasks={tasks}/>              
+             <TaskDisplay taskDetails={task} setTasks={setTasks} tasks={tasks}/>              
             
             ))}
            </div>   
