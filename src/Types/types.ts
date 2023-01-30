@@ -1,3 +1,5 @@
 export type Task = {
-    message: string    
+    identifier: number
+    message: string  
+    isComplete: boolean
 }
