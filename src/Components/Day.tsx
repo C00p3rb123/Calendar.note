@@ -23,7 +23,8 @@ const Day: React.FC<Props> = ({date, abbreviation}) =>{
         if(!isClicked && taskText){
             setTasks([...tasks, {
                 identifier: id,
-                message: taskText
+                message: taskText,
+                isComplete: false
                 
             }])
             setTaskText(undefined)
@@ -33,8 +34,7 @@ const Day: React.FC<Props> = ({date, abbreviation}) =>{
     
     return(
         <div className="flex flex-col items-center bg-white text-maroon border border-gray-300/50 w-full" onClick={() => {
-          setIscClicked(!isClicked)
-          {console.log(tasks)}          
+          setIscClicked(!isClicked)                  
         } } >
            <span>{abbreviation.toUpperCase()}</span>
            <span className="">{date}</span>                   

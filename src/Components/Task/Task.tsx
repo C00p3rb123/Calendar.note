@@ -19,7 +19,7 @@ export const TaskDisplay = ({taskDetails, setTasks, tasks}: Props) => {
     
   
     return (
-        isEdit ? <input autoFocus className="bg-maroon text-white w-full" onChange={(text) => {
+        isEdit ? <input type="text" value={taskText} autoFocus className="bg-maroon text-white w-full" onChange={(text) => {
             setTaskText(text.target.value)
             console.log(taskDetails.identifier)
         }} onClick={(e) => {
@@ -29,17 +29,29 @@ export const TaskDisplay = ({taskDetails, setTasks, tasks}: Props) => {
                 setIsEdit(false)
                 e.stopPropagation();
             }
-        } }
+        } }        
          ></input> :
     <div className='flex bg-maroon text-white justify-between items-end'>
-        {taskDetails.message}
+        {taskDetails.isComplete ? <s>{taskDetails.message}</s> : taskDetails.message}
         <div className='flex'>
             <CiEdit onClick={(event) => {
                 setIsEdit(true)
                 event.stopPropagation();    
             }} />
-            <TiTick />
-            <RiDeleteBin6Line/>
+            <TiTick onClick={(e) => {
+                tasks[taskDetails.identifier].isComplete= true; 
+                setTasks(tasks)                
+                e.stopPropagation() 
+                setIsComplete(!isComplete)            
+            }}/>
+            <RiDeleteBin6Line onClick={(e) => {
+                setTasks(tasks.filter((task) => task.identifier !== taskDetails.identifier).map((task, i)=>{
+                    task.identifier = i; 
+                    return(task)
+                }))
+                e.stopPropagation()
+                
+            }}/>
         </div>
 
     </div>)
